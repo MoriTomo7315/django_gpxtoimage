@@ -15,8 +15,9 @@ def file_upload(request):
         if form.is_valid():
             # ファイルの処理
             handle_upload_file(request.FILES['file'])
-            file_obj = request.FILES['file']
-            return HttpResponseRedirect('/success/url/')
+            request.FILES['file'] = None
+            # file_obj = request.FILES['file']
+            return HttpResponseRedirect('/')
     else:
         form = UploadForm()
     return render(request, 'file_upload/upload.html',{'form': form})
@@ -48,10 +49,9 @@ def handle_upload_file(file_obj):
 
     os.remove(file_path)
 
-
-
 def file_download(request):
     file_path = 'media/png/test.png'
     response = HttpResponse(open(file_path, 'rb').read(), content_type='image/png')
     response['Content-Disposition'] = 'attachment; filename="test.png"'
     return response
+
