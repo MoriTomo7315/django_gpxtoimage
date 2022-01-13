@@ -1,19 +1,67 @@
 {% load bootstrap4 %}
+{% load sass_tags %}
 {% bootstrap_css %}
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-{% block extra_css %}{% endblock %}
-<title>{% block title %}GPXTOIMAGE{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% block extra_css %}{% endblock %}
+  <title>{% block title %}GPXTOIMAGE{% endblock %}</title>
+  <link rel="stylesheet" href="{% sass_src 'css/style.scss' %}" type="text/css">
 </head>
-<body>
+
+<header class="mb-5">
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="/" class="navbar-brand d-flex align-items-center">
+        <strong>GPXTOIMAGE by モリトモ登山</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+        aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+  <div class="collapse bg-dark" id="navbarHeader">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+          <h4 class="text-white">About</h4>
+          <p class="text-muted">GPXTOIMAGEは主に登山動画を作成している方向けのサービスです。
+            YAMAPなどで記録した位置情報ファイル(***.gpx)を用いて、山行の軌跡画像を作成することができます。
+          </p>
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+          <ul class="list-unstyled">
+            <li><a href="#" class="text-white">note「GPXTOIMAGEの使い方」</a></li>
+            <li><a href="#" class="text-white">開発者のTwitter</a></li>
+            <li><a href="#" class="text-white">お問い合わせ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<body class="d-flex flex-column h-100">
   <div class="container">
     {% block content %}
-      {{ content }}
+    {{ content }}
     {% endblock %}
   </div>
-{% block extra_js %}{% endblock %}
+  <script src="{% sass_src 'js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{% sass_src 'js/bootstrap.bundle.min.js' %}"></script>
+  {% block extra_js %}{% endblock %}
 </body>
+
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <p>使用方法がわかりにくい場合は、note「 <a href="#">GPXTOIMAGEの使い方</a>」 にまとめたので参照ください。</p>
+    <p>機能追加や改善などご要望がある場合は、<a href="#">こちらのGoogle Form</a>よりご意見いただければと思います。</p>
+    <span class="text-muted">©2021 Tomoya, Mori.</span>
+  </div>
+</footer>
+
 </html>
