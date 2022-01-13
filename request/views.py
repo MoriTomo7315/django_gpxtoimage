@@ -23,13 +23,14 @@ def file_upload(request):
     return render(request, 'file_upload/upload.html',{'form': form})
 
 def handle_upload_file(file_obj):
-    file_path = 'media/gpx/' + file_obj.name 
-    with open(file_path, 'wb+') as destination:
+    file_path_and_name = '/tmp/gpx/' + file_obj.name
+    image_path_and_name = '/tmp/png/'+file_obj.name+'.png'
+    with open(file_path_and_name, 'wb+') as destination:
         for chunk in file_obj.chunks():
             destination.write(chunk)
     x = []
     y = []
-    gpx_file = open('media/gpx/' + file_obj.name, 'r')
+    gpx_file = open(file_path_and_name, 'r')
     gpx = gpxpy.parse(gpx_file)
 
     for track in gpx.tracks:
@@ -45,12 +46,12 @@ def handle_upload_file(file_obj):
     plt.gca().axes.xaxis.set_visible(False)
     plt.gca().axes.yaxis.set_visible(False)
     plt.gca().invert_xaxis()
-    plt.savefig('media/png/'+'test.png', transparent=True)
+    plt.savefig(image_path_and_name, transparent=True)
 
-    os.remove(file_path)
+    os.remove(file_path_and_name)
 
 def file_download(request):
-    file_path = 'media/png/test.png'
+    file_path = '/tmp/png/test.png'
     response = HttpResponse(open(file_path, 'rb').read(), content_type='image/png')
     response['Content-Disposition'] = 'attachment; filename="test.png"'
     return response

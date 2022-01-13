@@ -4,6 +4,6 @@ import request.views as request
 
 urlpatterns = [
     path('success/url/',request.file_download),
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', include('request.urls')),
 ]
