@@ -77,12 +77,6 @@ def handle_upload_file(file_obj):
     os.remove(file_path)
 
 def file_download(request):
-    # form = UploadForm()
-    # file_path = 'media/png/test.png'
     download_filename = re.sub(r".gpx",'',request.FILES['file'].name)+'.png'
     download_path = env('DOMAIN_URL') + 'media/png/' + download_filename
-    # response = HttpResponse(open(file_path, 'rb').read(), content_type='image/png')
-    # response['Content-Disposition'] = 'attachment; filename="test.png"'
-    # return response
-    # return render(request, 'file_upload/upload.html',{'form': form, 'download_path': download_path})
     return render(request, 'file_upload/download.html',{'download_filename': download_filename, 'download_path': download_path})
