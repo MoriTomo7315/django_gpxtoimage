@@ -1,9 +1,38 @@
 {% extends "file_upload/base.html" %}
+{% load sass_tags %}
 {% block content %}
-    <h1>GPXTOIMAGE</h1>
+<div class="card-body">
+  YAMAPなどでダウンロードしたGPXファイルを選択して「変換!!」ボタンをクリックすれば下記のような軌跡画像に変換できます。
+  <ul>
+    <li class="text-mute">拡張子は.png</li>
+    <li class="text-mute">軌跡の色は白色</li>
+    <li class="text-mute">背景は透過されています</li>
+  </ul>
+  例: 八ヶ岳（編笠山→権現岳→三ツ頭）縦走
+  <div class="routeImageWrapper w-50">
+    <img class="card-img-top" src="{% sass_src 'example.png' %}" alt="GPXファイルの軌跡画像変換の例">
+  </div>
+</div>
+
+
+{% if error_msg != None %}
+<div class="alert alert-danger" role="alert">
+  {{ error_msg }}
+</div>
+{% endif %}
+
+<div class="card">
+  <div class="card-header">
+    ▶︎ GPXファイルを軌跡画像に変換する
+  </div>
+  <div class="card-body">
     <form method="POST" enctype="multipart/form-data">
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit">変換!!</button>
     </form>
+  </div>
+</div>
+
+
 {% endblock content %}

@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8" />
-<title>GPXTOIMAGE</title>
-</head>
-<body>
-    <h1>ご利用ありがとうございました！</h1>
-    <a href="/">戻る</a>
-<hr />
-</body>
-</html>
+{% extends "file_upload/base.html" %}
+{% block content %}
+<h1 class="mb-5">ご利用ありがとうございました！</h1>
+<p class="mb=5">下記のボタンをクリックすると軌跡画像をダウンロードできます。</p>
+<div class="mb-5">
+    <a type="button" class="btn btn-primary" download={{download_filename}} href={{download_path}}>ダウンロード</a>
+</div>
+<div class="mb-5">
+    <a href="/">HOMEに戻る</a>
+</div>
+{% endblock content %}
