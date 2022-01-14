@@ -5,8 +5,6 @@ from django.conf import settings
 import request.views as request
 
 urlpatterns = [
-    path('success/url/',request.file_download),
-    # path('admin/', admin.site.urls),
     path('', include('request.urls')),
 ] 
 
