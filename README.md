@@ -1,22 +1,14 @@
 # django_gpxtoimage
 
-## to install django
+## to use this application
 
-```
-python3 -m venv myvenv
-source myvenv/bin/activate
-# confirm your pip is the latest versio
-python -m pip install --upgrade pip
-vi requirements.txt
------------------
-Django~=3.0.7
-PyMySQL==1.0.2
-------------------
-pip install -r requirements.txt
-```
+please access https://gpx2route-image.com/
 
 
-## start server
+## to run in local environment
+
 ```
-python manage.py runserver
+cd <your_path>/django_gpxtoimage
+docker build -t gpxtoimage .
+docker run -d --rm -p 8000:8000 --name gpxroute gpxroute
 ```
