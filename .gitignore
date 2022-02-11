@@ -2,3 +2,4 @@ myvenv/
 media/
 .DS_Store
 .env
+secrets.json
